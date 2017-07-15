@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Оформление договора</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form th:action="@{/creditor/fullcontractlist}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Вернуться к списку</button>
+    </form>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form autocomplete="off" action="#"
+                  th:object="${fullcontract}" method="post" class="form-horizontal"
+                  role="form">
+                <h2 th:text="'Договор №' + *{id}"></h2>
+                <br>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('bankWorker.name')}" th:errors="*{bankWorker.name}"
+                               class="validation-message"></label>
+                        <label>Кем оформлен: </label>
+                        <p th:text="*{bankWorker.name} + ', моб. телефон: ' + *{bankWorker.phone}"></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('client.name')}" th:errors="*{client.name}"
+                               class="validation-message"></label>
+                        <label>Клиент: </label>
+                        <a th:text="*{client.name} + ', моб. телефон: ' + *{client.phone}" th:href="@{'/creditor/contractlist/clientdetails'}"></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('creditProduct.name')}" th:errors="*{creditProduct.name}"
+                               class="validation-message"></label>
+                        <label>Кредитный продукт: </label>
+                        <a th:text="*{creditProduct.name}" th:href="@{'/creditor/contractlist/creditdetails'}"></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"
+                               class="validation-message"></label>
+                        <label>Начало действия договора: </label>
+                        <p th:text="*{startDate}"></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('endtDate')}" th:errors="*{endtDate}"
+                               class="validation-message"></label>
+                        <label>Окончание действия договора: </label>
+                        <p th:text="*{endtDate}"></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Цель приобретения кредита: </label>
+                        <input disabled type="text" th:field="*{purpose}"
+                               placeholder="цель приобретения кредита" class="form-control" /> <label
+                            th:if="${#fields.hasErrors('purpose')}" th:errors="*{purpose}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Сумма кредита: </label>
+                        <input disabled type="text" th:field="*{sum}"
+                               placeholder="сумма кредита" class="form-control" /> <label
+                            th:if="${#fields.hasErrors('sum')}" th:errors="*{sum}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="hidden" th:field="*{id}"
+                               placeholder="кол-во месцев" class="form-control" /> <label
+                            th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+
+                <hr>
+                <h2>Платежи клиента по договору</h2>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>№ платежа</th>
+                                <th>Дата платежа</th>
+                                <th>Состояние платежа</th>
+                                <th>Сумма платежа (руб.)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="row, status  : ${fullcontract.paymentList}">
+                                <td th:text="${status.index+1}">[Месяц]</td>
+                                <td th:text="${row.dateOfPayment}">[Всего за платеж]</td>
+                                <td th:text="${row.stateOfPayment}">[Основной Платеж]</td>
+                                <td th:text="${row.sumOfPayment}">[Проценты]</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <br>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<title>Кредитный калькулятор</title>
+<meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+    .fa-money {font-size:200px}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-red w3-card-2 w3-left-align w3-large">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-opennav w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="/bank" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Главная</a>
+        <a href="/credits" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Наши кредиты</a>
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="/bank" class="w3-bar-item w3-button w3-padding-large">Главная</a>
+        <a href="/credits" class="w3-bar-item w3-button w3-padding-large">Наши кредиты</a>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-red w3-center w3-padding-115">
+    <br>
+    <br>
+    <h1 class="w3-margin w3-jumbo">Кредитный калькулятор от AbstractCredit-Bank</h1>
+
+</header>
+
+<!-- First Grid -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form autocomplete="off" action="#" th:action="@{/credits/creditcalcresult}"
+                  th:object="${credit}" method="post" class="form-horizontal"
+                  role="form" onsubmit="valid(this);return false;">
+                <p hidden th:text="*{id}"></p>
+                <h3 th:text="*{name}"></h3>
+                <br>
+                <p hidden id="countOfMonth" th:text="*{countOfMonth}"></p>
+                <p th:text="'Срок кредита: до ' + *{countOfMonth} + ' месяцев.'"></p>
+                <br>
+                <p th:text="'Процентная ставка кредита: ' + *{percentage} + ' % годовых.'"></p>
+                <br>
+                <p hidden id="minSum" th:text="*{minSum}"></p>
+                <p th:text="'Минимальная сумма кредита: ' + *{minSum} + ' бел. руб.'"></p>
+                <br>
+                <p hidden id="maxSum" th:text="*{maxSum}"></p>
+                <p th:text="'Максимальная сумма кредита: ' + *{maxSum} + ' бел. руб.'"></p>
+                <br>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Введите желаемую сумму</label>
+                        <input type="text" placeholder="сумма в рублях" class="form-control" id="clientSum" name="clientSumm" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Введите на какой срок Вы собираетесь взять кредит</label>
+                        <input type="text" placeholder="кол-во месяцев" class="form-control" id="clientMonth" name="clientMonth" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button class="btn btn-danger btn-block">Рассчитать</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script >
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+
+    function valid(f){
+        var minSum = parseInt(document.getElementById("minSum").innerHTML);
+        var maxSum = parseInt(document.getElementById("maxSum").innerHTML);
+        var clientSum = parseInt(document.getElementById("clientSum").value);
+
+        var countOfMonth = parseInt(document.getElementById("countOfMonth").innerHTML);
+        var clientMonth = parseInt(document.getElementById("clientMonth").value);
+
+        if (clientSum > maxSum || clientSum < minSum){
+            alert('Вы ввели не правильную сумму размера кредита!');
+        } else if (clientMonth > countOfMonth || clientMonth < 1){
+            alert('Вы ввели не верное кол-во месяце периода выдачи кредита!');
+        } else {f.submit();}
+    }
+</script>
+
+</body>
+</html>

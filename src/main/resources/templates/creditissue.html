@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<title>Оформление кредита</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+    .fa-money {font-size:200px}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-red w3-card-2 w3-left-align w3-large">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-opennav w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="/bank" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Главная</a>
+        <a href="/credits" class="w3-bar-item w3-button w3-padding-large w3-white">Наши кредиты</a>
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="/bank" class="w3-bar-item w3-button w3-padding-large">Главная</a>
+        <a href="/credits" class="w3-bar-item w3-button w3-padding-large">Наши кредиты</a>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-red w3-center w3-padding-115">
+    <br>
+    <br>
+    <h1 class="w3-margin w3-jumbo">Оформление кредита</h1>
+
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form autocomplete="off" action="#" th:action="@{/credits/send/issue}"
+                  th:object="${client}" method="post" class="form-horizontal"
+                  role="form">
+                <h3>Заполнение персональных данных</h3>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Ф.И.О.</label>
+                        <input type="text" th:field="*{name}" placeholder="Ф.И.О."
+                               class="form-control" />
+                        <label style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                               class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Дата рождения</label>
+                        <input type="text" th:field="*{dob}" placeholder="ДД-ММ-ГГГГ"
+                               class="form-control" />
+                        <label  style="color: red" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"
+                                class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Адрес места жительства</label>
+                        <input type="text" th:field="*{adress}" placeholder="область, город, улица, дом, квартира"
+                               class="form-control" />
+                        <label style="color: red" th:if="${#fields.hasErrors('adress')}" th:errors="*{adress}"
+                               class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Гражданство</label>
+                        <input type="text" th:field="*{citizen}" placeholder="гражданство"
+                               class="form-control" />
+                        <label style="color: red" th:if="${#fields.hasErrors('citizen')}" th:errors="*{citizen}"
+                               class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Идентификационный номер паспорта</label>
+                        <input type="text" th:field="*{passportId}" placeholder="Идентификационный номер паспорта"
+                               class="form-control" />
+                        <label style="color: red" th:if="${#fields.hasErrors('passportId')}" th:errors="*{passportId}"
+                               class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Кем выдан паспорт</label>
+                        <input type="text" th:field="*{passportDepartment}" placeholder="Кем выдан паспорт"
+                               class="form-control" />
+                        <label style="color: red" th:if="${#fields.hasErrors('passportDepartment')}" th:errors="*{passportDepartment}"
+                               class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Номер мобильного телефона</label>
+                        <input type="text" th:field="*{phone}" placeholder="+375-ХХ-ХХХ-ХХ-ХХ"
+                               class="form-control" />
+                        <label style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"
+                               class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Адрес электронной почты</label>
+                        <input type="text" th:field="*{email}" placeholder="Адрес электронной почты"
+                               class="form-control" />
+                        <label style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                               class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Размер ваших дохдов</label>
+                        <input type="text" th:field="*{income}" placeholder="Размер ваших дохдов"
+                               class="form-control" />
+                        <label style="color: red" th:if="${#fields.hasErrors('income')}" th:errors="*{income}"
+                               class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Размер ваших расходов</label>
+                        <input type="text" th:field="*{expenditure}" placeholder="Размер ваших расходов"
+                               class="form-control" />
+                        <label style="color: red" th:if="${#fields.hasErrors('expenditure')}" th:errors="*{expenditure}"
+                               class="validation-message"></label>
+                    </div>
+                </div>
+                <hr>
+                <h3>Заполнение дополнительных данных</h3>
+                <p style="color: red">Пожалуйста полностью заполните всю анкету с дополнительными данными.<br>Т.к. это может сильно повлиять на Ваши шансы получения кредита.</p>
+
+                <div class="form-group" th:each="questionList : ${questionList}">
+                    <div class="col-sm-9">
+                        <label th:text="${questionList.questionName}"></label>
+                        <select class="form-control" th:name="'q'">
+                            <option disabled selected value="">-Выберите из выпадающего списка нужный вариант-</option>
+                            <option th:each="caseList : ${questionList.caseList}"
+                                    th:value="${caseList.id}"
+                                    th:text="${caseList.caseItem}"
+                            ></option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-danger btn-block">Подать заявку</button>
+                    </div>
+                </div>
+
+                <span th:utext="${successMessage}"></span>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+
+</body>
+</html>

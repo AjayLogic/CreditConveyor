@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Оформление договора</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form th:action="@{/creditor/contractlist}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Вернуться к списку</button>
+    </form>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form autocomplete="off" action="#" th:action="@{/creditor/contractlist/savecontract}"
+                  th:object="${contract}" method="post" class="form-horizontal"
+                  role="form">
+                <h2>Оформление договора</h2>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('client.name')}" th:errors="*{client.name}"
+                               class="validation-message"></label>
+                        <label>Клиент: </label>
+                        <a th:text="*{client.name} + ', моб. телефон: ' + *{client.phone}" th:href="@{'/creditor/contractlist/clientdetails'}"></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('creditProduct.name')}" th:errors="*{creditProduct.name}"
+                               class="validation-message"></label>
+                        <label>Кредитный продукт: </label>
+                        <a th:text="*{creditProduct.name}" th:href="@{'/creditor/contractlist/creditdetails'}"></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Цель кредита: </label>
+                        <input type="text" th:field="*{purpose}"
+                               placeholder="цель приобретения кредита" class="form-control" /> <label
+                            th:if="${#fields.hasErrors('purpose')}" th:errors="*{purpose}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Сумма кредита: </label>
+                        <input type="text" th:field="*{sum}"
+                               placeholder="сумма кредита" class="form-control" /> <label
+                            th:if="${#fields.hasErrors('sum')}" th:errors="*{sum}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label>Кол-во месцев: </label>
+                        <input type="text" name="countOfMonth"
+                               placeholder="кол-во месцев" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="hidden" th:field="*{id}"
+                               placeholder="кол-во месцев" class="form-control" /> <label
+                            th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Оформить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

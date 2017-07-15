@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Страница администратора</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <form th:action="@{/admin/home}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Вернуться на главную</button>
+    </form>
+
+    <div class="panel-group" style="margin-top:40px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Список менеджеров
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ф.И.О.</th>
+                            <th>Телефон</th>
+                            <th>Email</th>
+                            <th>Редактировать</th>
+                            <th>Удалить</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="manager : ${managerList}">
+                            <td th:text="${manager.name}">[Ф.И.О.]</td>
+                            <td th:text="${manager.phone}">[Телефон]</td>
+                            <td th:text="${manager.email}">[Email]</td>
+                            <td>
+                                <a th:href="@{'managerlist/{id}/edit'(id=${manager.id})}" class="edit" th:attr="name=${manager.name}">
+                                    <span class="fa-stack">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="@{'managerlist/{id}/delete'(id=${manager.id})}" class="delete" th:attr="name=${manager.name}">
+                                    <span class="fa-stack">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

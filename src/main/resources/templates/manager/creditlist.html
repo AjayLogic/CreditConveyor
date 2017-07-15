@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Страница кредитных продуктов</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <form th:action="@{/manager/home}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Вернуться на главную</button>
+    </form>
+
+    <div class="panel-group" style="margin-top:40px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Список кредитных продуктов
+            </div>
+            <div class="panel-body">
+                <form th:action="@{/manager/addcredit}" method="get">
+                    <button class="btn btn-primary" type="Submit">Добавить</button>
+                </form>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Процентная ставка</th>
+                        <th>Кол-во месяцев</th>
+                        <th></th>
+                    </tr>
+                    </thead> <tbody>
+                <tr th:each="credit : ${creditList}">
+                    <td th:text="${credit.name}">[Название]</td>
+                    <td th:text="${credit.percentage}">[Процентная ставка]</td>
+                    <td th:text="${credit.countOfMonth}">[Кол-во месяцев]</td>
+                    <td>
+                        <a th:href="@{'creditlist/{id}/edit'(id=${credit.id})}" class="edit" th:attr="name=${credit.name}">
+                                    <span class="fa-stack">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </span>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{'creditlist/{id}/delete'(id=${credit.id})}" class="delete" th:attr="name=${credit.name}">
+                                    <span class="fa-stack">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </span>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
+            <p class="admin-message-text text-center" th:utext="${managerMessage}"></p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
