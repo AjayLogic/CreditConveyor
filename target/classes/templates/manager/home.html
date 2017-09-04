@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Страница менеджера</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+
+    <form th:action="@{/logout}" method="get">
+        <button class="btn btn-md btn-danger btn-block" name="registration"
+                type="Submit">Выйти</button>
+    </form>
+
+    <div class="panel-group" style="margin-top:40px">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span th:utext="${userName}"></span>
+            </div>
+            <div class="panel-body">
+                <h4>Работа с персоналом</h4>
+                <a href="registrationforcreditor.html">Регистрация специалиста по кредитам</a>
+                <br>
+                <a href="creditorlist.html">Список зарегистрированных специалистов по кредитам</a>
+                <br>
+                <hr>
+                <h4>Работа с кредитными продуктами</h4>
+                <a href="creditlist.html">Кредитные продукты</a>
+                <br>
+                <hr>
+                <h4>Работа со скоринговой картой</h4>
+                <a href="questionlist.html">Вопросы для скоринговой карты</a>
+                <br>
+                <a href="scoringmapconfig.html">Конфигуратор скоринговой карты</a>
+                <br>
+                <hr>
+                <h4>Отчет по оформленным контрактам за выбранный период</h4>
+                <br>
+                <form autocomplete="off" action="#" th:action="@{/manager/report.html}"
+                       method="post" class="form-horizontal"
+                      role="form">
+                    <div class="col-xs-4">
+                    <label for="startDate" class="col-2 col-form-label">Начало периода</label>
+                    <div class="col-10">
+                        <input class="form-control" type="date" value="" name="startDate" id="startDate">
+                    </div>
+                    </div>
+                    <div class="col-xs-4">
+                    <label for="endDate" class="col-2 col-form-label">Начало периода</label>
+                    <div class="col-10">
+                        <input class="form-control" type="date" value="" name="endDate" id="endDate">
+                    </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <label for="endDate" style="color:transparent" class="col-2 col-form-label">..</label>
+                        <div class="col-10">
+                            <button class="btn btn-primary">Вывести отчет</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <p class="admin-message-text text-center" th:utext="${managerMessage}"></p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

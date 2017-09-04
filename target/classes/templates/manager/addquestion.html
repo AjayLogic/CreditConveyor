@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавление нового вопроса</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form th:action="@{/manager/questionlist}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Вернуться к списку</button>
+    </form>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form autocomplete="off" action="#" th:action="@{/manager/addquestion}"
+                  th:object="${question}" method="post" class="form-horizontal"
+                  role="form">
+                <h2>Добавление нового вопроса для скоринговой карты</h2>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('questionName')}" th:errors="*{questionName}"
+                               class="validation-message"></label>
+                        <input type="text" th:field="*{questionName}" placeholder="Введите вопрос"
+                               class="form-control" />
+                    </div>
+                </div>
+
+
+
+                <label>Варианты ответов:</label><br>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input type="text" size="34" placeholder="Введите вариант ответа" class="form-control" name="caseValue" /><input type="text" size="3" placeholder="баллы" class="form-control" name="caseScore"/><button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                    </div>
+                    <div id="case_fields"></div>
+                    <div class="clear"></div>
+                </div>
+
+
+                <script>
+                    var room = 1;
+                    function education_fields() {
+
+                        room++;
+                        var objTo = document.getElementById('case_fields')
+                        var divtest = document.createElement("div");
+                        divtest.setAttribute("class", "form-group removeclass"+room);
+                        var rdiv = 'removeclass'+room;
+                        divtest.innerHTML = '<div class="form-inline"><input type="text" size="34" placeholder="Введите вариант ответа" class="form-control" name="caseValue" /><input type="text" size="3" placeholder="баллы" class="form-control" name="caseScore"/><button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div>';
+
+                        objTo.appendChild(divtest)
+                    }
+                    function remove_education_fields(rid) {
+                        $('.removeclass'+rid).remove();
+                    }
+                </script>
+
+
+                <br>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">добавить</button>
+                    </div>
+                </div>
+
+                <span th:utext="${successMessage}"></span>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

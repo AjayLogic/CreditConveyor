@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Страница заявок на кредит</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <form th:action="@{/creditor/home}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Вернуться на главную</button>
+    </form>
+
+    <div class="panel-group" style="margin-top:40px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Список оформленных договоров
+            </div>
+            <div class="panel-body">
+
+                <form th:action="@{/creditor/fullcontractlist}" method="post">
+                <div class="col-lg-6">
+                    <div class="input-group">
+
+                        <input name="searchedId" type="text" class="form-control" placeholder="Введите номер договора для поиска...">
+                        <span class="input-group-btn">
+                           <button class="btn btn-secondary" type="submit">Найти!</button>
+                        </span>
+
+                    </div>
+                </div>
+                </form>
+                <br>
+                <br>
+                <br>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>№ договора</th>
+                        <th>Дата начала договора</th>
+                        <th>сумма договора</th>
+                        <th>Клиент</th>
+                        <th>Подробнее</th>
+                        <th>Печать</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="contract : ${fullcontractlist}">
+                        <td th:text="${contract.id}">[№ договора]</td>
+                        <td th:text="${contract.startDate}">[Дата начала договора]</td>
+                        <td th:text="${contract.sum}">[сумма]</td>
+                        <td th:text="${contract.client.name}">[Клиент]</td>
+
+                        <td>
+                            <a th:href="@{'fullcontractlist/{id}/details'(id=${contract.id})}" class="edit" th:attr="name=${contract.id}">
+                                            <span class="fa-stack">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                            </span>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{'fullcontractlist/{id}/print'(id=${contract.id})}" class="print" th:attr="name=${contract.id}">
+                                            <span class="fa-stack">
+                                                <i class="glyphicon glyphicon-print"></i>
+                                            </span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="admin-message-text text-center" th:utext="${managerMessage}"></p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

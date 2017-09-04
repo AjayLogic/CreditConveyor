@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-06-15T22:10:55 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contract" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef0540ad-e5af-4227-89fc-733758d0228f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="bankWorker.bank.name" class="java.lang.String"/>
+	<field name="bankWorker.name" class="java.lang.String"/>
+	<field name="client.name" class="java.lang.String"/>
+	<field name="purpose" class="java.lang.String"/>
+	<field name="sum" class="java.math.BigDecimal"/>
+	<field name="startDate" class="java.util.Date"/>
+	<field name="endtDate" class="java.util.Date"/>
+	<field name="creditProduct.percentage" class="java.lang.Integer"/>
+	<field name="bankWorker.bank.mfo" class="java.lang.String"/>
+	<field name="bankWorker.bank.adress" class="java.lang.String"/>
+	<field name="client.passportId" class="java.lang.String"/>
+	<field name="client.adress" class="java.lang.String"/>
+	<field name="client.phone" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="1" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="1" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="1" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="609" splitType="Stretch">
+			<textField>
+				<reportElement x="354" y="2" width="100" height="23" uuid="82bd8c2a-3dad-42f2-b911-c05442ecff20"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="ElementGroupHeight" x="138" y="2" width="230" height="23" uuid="b72c3be6-3d5b-4593-b9d9-f6284524b9c1"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="16" isBold="true" pdfFontName="" pdfEncoding="Identity-V" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Кредитный договор №"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="51" y="40" width="492" height="20" uuid="e4d0b217-6cfa-4813-a6ff-c91b90f761f5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bankWorker.bank.name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="51" y="58" width="493" height="1" uuid="42ab7c51-37e3-4d30-a4a6-85d395424f48"/>
+			</line>
+			<staticText>
+				<reportElement x="211" y="57" width="134" height="10" uuid="f87a90da-2a7d-4701-b647-dbb891ffe115"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[(полное наименование банка)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="69" width="544" height="19" uuid="985b98d0-8b9d-4cc7-9599-75a467818b3d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[именуемый в дальнейшем "Кредитодатель", в лице специалиста по кредитам]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="105" width="545" height="1" uuid="c70277a9-b4fb-4560-a065-fa03726b7c8f"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="86" width="543" height="19" uuid="47be5272-93df-4653-9935-b7934a52959a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bankWorker.name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="159" y="106" width="230" height="10" uuid="22f472d8-1fc0-4856-a6bb-42f0c7a13864"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[(Ф.И.О. лица, уполномоченного подписать договор)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="113" width="138" height="19" uuid="2b473176-b8cc-4536-95b9-ac788cd1a06b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[с одной стороны, и]]></text>
+			</staticText>
+			<line>
+				<reportElement x="138" y="130" width="403" height="1" uuid="4eaad97b-f2d5-4317-a6d7-3169e2c5356e"/>
+			</line>
+			<staticText>
+				<reportElement x="290" y="132" width="120" height="10" uuid="4b5cd13c-54d8-4d8b-828a-77dee1371b6e"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[(Ф.И.О. физического лица)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="113" width="403" height="19" uuid="f863af4b-948c-4845-8012-e9a08107927b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client.name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-1" y="135" width="544" height="38" uuid="d3683b29-8ca3-4fcd-98e9-79bb3fac7b8b"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[именуемый в дальнейшем "Кредитополучатель", с другой стороны, а вместе именуемые Стороны, заключили настоящий договор о нижеследующем:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="172" width="544" height="70" uuid="ad3eded2-685b-416a-8038-ad7223263752"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[1. ПРЕДМЕТ ДОГОВОРА
+
+1.1. Кредитодатель предоставляет Кредитополучателю кредит на финансирование приобретения ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="220" y="235" width="325" height="1" uuid="f2b6293c-d499-40a4-b99f-7c96a4d9d68e"/>
+			</line>
+			<textField>
+				<reportElement x="221" y="215" width="324" height="24" uuid="d872b287-c055-4a63-a699-da8baf2a42e5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{purpose}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="234" width="59" height="19" uuid="5cf4c2d1-e35d-4e24-a29b-98c04022915a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[в сумме]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="59" y="234" width="160" height="19" uuid="3d975541-d86e-4a71-b737-e64263483a13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="253" width="543" height="31" uuid="7e9201e3-8645-4b0f-84ca-268673f14d06"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[обязуется возвратить (погасить) кредит и уплатить проценты за пользование им.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="235" width="324" height="18" uuid="1e2ebbc6-05e4-4540-bbab-fa90e9e36af6"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[  белорусских  рублей,   а Кредитополучатель ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="284" width="250" height="20" uuid="c7e93183-fe1a-4668-b1ca-b99684c01525"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[1.2. Дата предоставления кредита -]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="304" width="290" height="20" uuid="e243e0c3-0eb1-4e00-a091-ec79029dbaa0"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[1.3. Срок возврата (погашения) кредита - ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="324" width="480" height="20" uuid="6b6d9339-8ead-4b42-bcfb-43ba273b0d4e"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[1.4. Проценты за пользование кредитом устанавливаются в размере]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="344" width="80" height="20" uuid="749de45f-5421-4073-8bd0-62d1aaaaa19a"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[годовых.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="250" y="284" width="80" height="20" uuid="0d497313-19d7-417a-a2cf-34fbb2e67ee0"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{startDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="304" width="80" height="20" uuid="bc592e2a-c320-47d7-ba32-b1fa9024027d"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{endtDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="324" width="40" height="20" uuid="1898e0ec-ee06-4b1c-9b03-2192ff4dcd28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{creditProduct.percentage}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="520" y="324" width="23" height="20" uuid="5cab615a-040a-4c09-aa4b-3ebe29004cb0"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[% ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="364" width="545" height="242" uuid="8243350e-d194-4a29-a867-bc1d2995cdd9"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[	Данный договор вступает в силу с момента его подписания Сторонами и действует до полного исполнения Сторонами обязательств по нему.
+	Изменение условий договора оформляется дополнительным соглашением Сторон, которое является неотъемлемой частью настоящего договора.
+	Все споры по настоящему договору, не урегулированные Сторонами, рассматриваются в порядке, установленном действующим законодательством Республики Беларусь.
+	С действующими у Кредитодателя условиями кредитования физических лиц      Кредитополучатель ознакомлен и обязуется их выполнять.
+	Настоящий договор составлен на русском языке в 2 экземплярах, имеющих одинаковую юридическую силу, - по одному для каждой из Сторон.]]></text>
+			</staticText>
+		</band>
+		<band height="135" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="25" width="223" height="110" uuid="e0d0084f-ac7b-4d59-9fba-66334902a201"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[КРЕДИТОДАТЕЛЬ
+Наименование:
+Адрес:
+Банковские реквизиты: МФО
+Тел.: +375-29-811-23-32
+
+Кредитодатель:
+М.П.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="0" width="444" height="16" uuid="344ab098-f65b-4841-b479-8455c7888776"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="13"/>
+				</textElement>
+				<text><![CDATA[МЕСТО НАХОЖДЕНИЯ, РЕКВИЗИТЫ И ПОДПИСИ СТОРОН]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="81" y="35" width="220" height="17" uuid="b6460579-fc53-4d76-b528-c7b56b68bffd"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bankWorker.bank.name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="94" width="216" height="20" uuid="2734391b-d833-42ba-a07d-69ead5b0a847"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bankWorker.name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="49" width="261" height="15" uuid="5a12e9de-fa4b-4b36-be59-a22737d9f4d0"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bankWorker.bank.adress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="59" width="154" height="20" uuid="b181a27f-f3d0-45d9-89d0-912c61589d2e"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bankWorker.bank.mfo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="300" y="25" width="244" height="109" uuid="1728c3ef-8256-4500-abf6-3102059c2e49"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[КРЕДИТОПОЛУЧАТЕЛЬ
+Ф.И.О.
+Паспортные данные:
+Адрес:
+
+
+Тел.:
+Кредитополучатель: ______________]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="340" y="36" width="227" height="15" uuid="86f94657-aa26-46ef-a4ca-db336af9cb58"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client.name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="47" width="160" height="13" uuid="3b742f4b-b8bd-43a2-bb8a-e1c3d4ee9cd6"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client.passportId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="72" width="258" height="26" uuid="2077e51a-cfa9-4e2f-9ffb-6a133c2c8179"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client.adress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="326" y="94" width="228" height="20" uuid="4131167a-6973-47a5-83f4-83c02c00dd38"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client.phone}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
