@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование скоринговой карты</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form th:action="@{/manager/scoringmapconfig}" method="get">
+        <button class="btn btn-md btn-warning btn-block" type="Submit">Вернуться к списку</button>
+    </form>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form autocomplete="off" action="#" th:action="@{/manager/scoringmapconfig/updatescoringmap}"
+                  th:object="${scoringMap}" method="post" class="form-horizontal"
+                  role="form">
+                <h2>Редактирование скоринговой карты</h2>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                               class="validation-message"></label>
+                        <textarea maxlength="255" type="text" th:field="*{description}" placeholder="описание (макс. кол-во символов 255)"
+                                  class="form-control"/>
+                    </div>
+                </div>
+
+                <input type="hidden" th:field="*{id}" placeholder="Введите вопрос"
+                       class="form-control" />
+
+                <div class="checkbox">
+                    <label><input th:type="checkbox" name="isActive" th:checked="*{isActive()}">Установить как текущую</label>
+                    <p class="admin-message-text text-center" style="color: red" th:utext="${activeMessage}"></p>
+                </div>
+                <hr>
+                <br>
+                <h4>Вопросы скоринговой карты</h4>
+
+                <table class="table">
+                    <tbody>
+                    <tr th:each="question : ${questions}">
+                        <td th:text="${question.questionName}"></td>
+                        <td>
+                            <a th:href="@{'/editscoringmap/{id}/deletequestion'(id=${question.id})}" class="edit" th:attr="name=${question.questionName}">
+                                <span class="fa-stack">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <br>
+                <h4>Вопросы для скоринговой карты</h4>
+
+                <table class="table">
+                    <tbody>
+                    <tr th:each="questionA : ${questionList}">
+                        <td th:text="${questionA.questionName}"></td>
+                        <td><input type="checkbox" th:value="${questionA.id}" name="items"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <br>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">сохранить</button>
+                    </div>
+                </div>
+
+                <span th:utext="${successMessage}"></span>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
